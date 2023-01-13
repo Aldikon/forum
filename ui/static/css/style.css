@@ -2,6 +2,10 @@ body {
     background: #E5E5E5;
 }
 
+.errorPageBody {
+    background: #FFFFFF;
+}
+
 .signinpage {
     transition: all 0.3s ease-in-out;
 }
@@ -54,11 +58,16 @@ span {
     margin-bottom: 40px;
 }
 
-.signin__container p {
+.signin__container p,
+.errorPage p {
     font-size: 16px;
     text-align: center;
     color: #224957;
     margin-bottom: 50px;
+}
+
+.errorPage p {
+    margin-bottom: 20px;
 }
 
 .signin__container form button {
@@ -221,4 +230,135 @@ span {
 .valid {
     color: green;
     font-weight: bold;
+}
+
+
+/*  */
+
+.errorPage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.errorPage p {
+    text-align: center;
+}
+
+.errorlink {
+    width: 220px;
+    height: 56px;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: #000000;
+    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.306414));
+    background: #FFFFFF;
+    border-radius: 5px;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in;
+    margin: 0 auto;
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+
+.errorlink:hover {
+    transform: rotate(10deg);
+}
+
+.errorPage_img {
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.errorPage_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/*  tags */
+
+label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #607D8B;
+}
+
+#newTag {
+    font-size: 1rem;
+    color: #455A64;
+    display: block;
+    width: 100%;
+    height: 3rem;
+    padding: 0 1rem;
+    border: 0.125rem solid #CFD8DC;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    transition: 0.5s all;
+}
+
+#newTag:focus,
+#newTag:active {
+    outline: none;
+    border: 0.125rem solid #81C784;
+    box-shadow: 0 0 0.5rem rgba(67, 160, 71, 0.15);
+}
+
+ul#tagList {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+ul#tagList::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+ul#tagList li {
+    position: relative;
+    list-style: none;
+    float: left;
+    font-size: 0.835rem;
+    text-transform: capitalize;
+    background-color: #E8F5E9;
+    line-height: 1rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+}
+
+ul#tagList li>span.rmTag {
+    position: absolute;
+    margin: 0.25rem;
+    top: 0;
+    right: 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 1rem;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: center;
+    background-color: #C8E6C9;
+    cursor: pointer;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
+}
+
+ul#tagList li>span.rmTag:hover {
+    background-color: #ef9a9a;
 }

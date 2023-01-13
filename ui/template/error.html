@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Code}} {{.Message}}</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="https://cdn.icon-icons.com/icons2/2714/PNG/512/instagram_logo_thin_icon_171701.png">
+</head>
+
+<body class="errorPageBody">
+
+    <div class="container errorPage">
+        <h1 class="title"> Whoops! Look like you're lost</h1>
+        <div class="errorPage_img">
+            <img src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="">
+        </div>
+
+        <p>{{.Code}} (ex. 404)</p>
+        <p class="text-error">
+            {{.Message}} (ex. not found)
+        </p>
+        <!-- <p>yeah, you’ve reached the end of the road.</p> -->
+        <a href="/" class="errorlink">Go to Home</a>
+    </div>
+</body>
+
+</html>
