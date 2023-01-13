@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body class="signinpage">
+    <div class="signin__container">
+        <div class="container ">
+            <h1 class="title">Sign-Up</h1>
+            {{if .Status}}
+            <p>{{.Err}}</p>
+            {{else}}
+            <p>Sign un and start managing posting daily news!</p>
+            {{end}}
+            <form method="post" action="signup">
+                <div class="inputBox">
+                    <input type="text" name="email" required>
+                    <span>Email</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="username" required>
+                    <span>Username</span>
+                    <i></i>
+                </div>
+                <div class="inputBox psw">
+                    <input type="password" id="password" name="password" required>
+                    <span>Password</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                    <span>Confirm Password</span>
+                    <i></i>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="LightDarkMode">
+        <div class="LightDarkMode__btn"></div>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>
