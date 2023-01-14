@@ -59,7 +59,7 @@ func signUpPost(w http.ResponseWriter, r *http.Request, ser service.UserService)
 			http.Error(w, "Invalid template", http.StatusInternalServerError)
 			return
 		}
-		temp.Execute(w, err)
+		temp.Execute(w, bodyOnError)
 		return
 	}
 	util.DelAllForm(r)
