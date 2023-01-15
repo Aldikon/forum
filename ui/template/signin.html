@@ -21,7 +21,7 @@
             {{else}}
             <p>Sign in and start managing posting daily news!</p>
             {{end}}
-            <form method="post" action="signin">
+            <form method="post" action="signin" onsubmit="submitForm()">
                 <div class="inputBox">
                     <input type="text" name="email" required>
                     <span>Email</span>
@@ -41,6 +41,13 @@
         <div class="LightDarkMode__btn"></div>
     </div>
 
+    <div class="form_loader" id="form_loader">
+        <div class="form_loader_block">
+            <div class="form_loader_animate"></div>
+            <div class="form_loader_text">loading</div>
+        </div>
+    </div>
+    <script src="static/js/jquery-3.6.0.min.js"></script>
     <script src="static/js/script.js"></script>
 </body>
 
