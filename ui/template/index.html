@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AlemLove</title>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="https://cdn.icon-icons.com/icons2/2714/PNG/512/instagram_logo_thin_icon_171701.png">
+
+</head>
+
+<body>
+    <header class="header">
+        <a href="/">AlemLove</a>
+        <!-- if user not registered -->
+        <a href="/signin.html" class="btn btn-outline-primary mx-1">Sign In</a>
+        <a href="/signup.html" class="btn btn-outline-primary">Sign Up</a>
+        <!-- if user registered -->
+        <a href="/logOut">Log Out</a>
+
+    </header>
+    <div class="searchbar">
+        <form action="" method="get">
+            <input type="text" name="search" required>
+            <button type="submit">search</button>
+        </form>
+    </div>
+
+    <div class="postList">
+        <!-- post -->
+        <div class="post">
+            <div class="container">
+                <div class="post__header">
+                    <h1 class="post__title">{{.title}} (ex. Use tr or sed to swap values)</h1>
+                    <p class="post__date">{{.date}} (ex. 20/20/02)</p>
+                    <div class="post__desc">
+                        <p>{{.description}}</p>
+                        <p>I have a file where I want to change values /1 to /2, and /2 to /1
+                            <br> I have tried
+                            <br> cat file.txt | tr /1 /2 > out.txt Problem is this simply leaves me with all /2, and if I try to do:
+                            <br> cat file.txt | tr /1 /2 | tr /2 /1 > out.txt then I get all /1's. How can I swap the two numbers at the same time?
+                            <br> I have also just tried this but no luck
+                            <br> sed -i -e 's/\/1/\/2/g' -e 's/\/2/\/1/g' file.txt</p>
+                    </div>
+                    <div class="author"><span>Author:</span>{{.Author}}</div>
+                    <div class="category">{{.Category}}</div>
+                </div>
+                <div class="post_likes">
+                    <!-- Like -->
+                    <form action="/likePost" method="post">
+                        <div class="like d-flex me-3" style="align-items: center">
+                            <button type="submit" value="{{.PostID}}" name="like"> Like </button>
+                            <p class="mt-3">{{.Likes}}</p>
+                        </div>
+                    </form>
+                    <!-- Dislike -->
+                    <form action="/dislikePost" method="post">
+                        <div class="like d-flex me-1" style="align-items: center">
+                            <button type="submit" value="{{.PostID}}" name="dislike"> Dislikes </button>
+                            <p class="mt-3">{{.Dislikes}}</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- post end -->
+    </div>
+
+
+
+</body>
+
+</html>
