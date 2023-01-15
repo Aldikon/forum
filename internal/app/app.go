@@ -20,6 +20,7 @@ func buildMux(con controller.Controller) *http.ServeMux {
 
 	mux.Handle("/signup", con.SignUpMiddleware(http.HandlerFunc(con.SignUp)))
 	mux.HandleFunc("/signin", con.SignIn)
+	mux.HandleFunc("/error", con.Error)
 
 	fileServer := http.FileServer(http.Dir("./ui/static"))
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
