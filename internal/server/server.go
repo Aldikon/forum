@@ -6,7 +6,7 @@ import (
 	"project/config"
 )
 
-func NewServer(mux *http.ServeMux) *http.Server {
+func NewServer(mux http.Handler) *http.Server {
 	return &http.Server{
 		Addr:    config.C.Server.Port,
 		Handler: mux,

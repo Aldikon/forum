@@ -3,7 +3,6 @@ CREATE TABLE Posts (
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     user_id INTEGER NOT NULL,
-    category_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES Users(id)
-    CHECK (user_id != 0)
+    -- CHECK (user_id != 0)
 );

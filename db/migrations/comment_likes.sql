@@ -4,7 +4,5 @@ CREATE TABLE Comment_Likes (
     comment_id INTEGER NOT NULL,
     type INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (comment_id) REFERENCES Comments(id),
-    
-    UNIQUE (user_id, comment_id)
+    FOREIGN KEY (comment_id) REFERENCES Comments(id)
 );

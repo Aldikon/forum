@@ -1,7 +1,6 @@
 package app
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -11,6 +10,7 @@ import (
 
 	"project/config"
 	"project/internal/handlers"
+	"project/internal/handlers/middleware_handlers"
 	"project/internal/handlers/user_handlers"
 	"project/internal/repository"
 	"project/internal/server"
@@ -56,42 +56,29 @@ func (a *app) Run() error {
 	}
 
 	mux := http.NewServeMux()
-	a.build(mux, db)
+	// a.build(mux, db)
 
-	myServer := server.NewServer(mux)
+	userRepository := repository.NewUserRepository(db)
+	userService := service.NewService(userRepository)
+	userHandler := user_handlers.NewUserHandler(userService)
+
+	middleware := middleware_handlers.NewMiddlewareHandler()
+
+	fileServer := http.FileServer(http.Dir("./ui/static"))
+	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+
+	mux.Handle(urlProfile, middleware.MiddlewareGetSession(http.HandlerFunc(userHandler.Profile)))
+	mux.HandleFunc(urlLogIn, userHandler.LogIn)
+	mux.HandleFunc(urlLogOut, userHandler.LogOut)
+	mux.HandleFunc(urlSignUp, userHandler.SignUp)
+
+	myServer := server.NewServer(middleware.PanicRecovery(mux))
 
 	log.Printf("Starting listener on http://localhost%s", config.C.Server.Port)
 
 	go func() { a.chanErr <- myServer.ListenAndServe() }()
 
 	return a.wait()
-}
-
-func (a *app) build(mux *http.ServeMux, db *sql.DB) {
-	// withAccess := http.NewServeMux()
-	// withoutAccess := http.NewServeMux()
-
-	userRepository := repository.NewUserRepository(db)
-	userService := service.NewService(userRepository)
-	userHandler := user_handlers.NewUserHandler(userService)
-
-	// middleware := middleware_handlers.NewMiddlewareHandler()
-
-	fileServer := http.FileServer(http.Dir("./ui/static"))
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-
-	// user mux
-	mux.HandleFunc(urlLogIn, userHandler.LogIn)
-	mux.HandleFunc(urlLogOut, userHandler.LogOut)
-	mux.HandleFunc(urlProfile, userHandler.Profile)
-	mux.HandleFunc(urlSignUp, userHandler.SignUp)
-
-	// mux.Handle("", middleware.PanicRecovery(withAccess))
-	// mux.Handle("/", middleware.PanicRecovery(withoutAccess))
-
-	// mux.HandleFunc(urlLike, userHandler.Logout)
-	// mux.HandleFunc(urlCommemt, userHandler.Logout)
-	// mux.HandleFunc(urlIndex, userHandler.Logout)
 }
 
 func (a *app) wait() error {

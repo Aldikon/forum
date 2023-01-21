@@ -6,8 +6,5 @@ CREATE TABLE Comments (
     description TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id), 
     FOREIGN KEY (post_id) REFERENCES Posts(id),
-    FOREIGN KEY (parent_id) REFERENCES Comments(id) 
-    CHECK (user_id != 0)
-    CHECK (post_id != 0)
-    CHECK (parent_id != 0)
+    FOREIGN KEY (parent_id) REFERENCES Comments(id)
 );
