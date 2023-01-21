@@ -1,0 +1,10 @@
+{
+    "server": {
+        "port": ":8080"
+    },
+    "path": {
+        "db": "./db/",
+        "template": "./ui/template/",
+        "static": "./ui"
+    }
+}

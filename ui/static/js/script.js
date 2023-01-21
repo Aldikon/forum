@@ -5,9 +5,6 @@ LightDarkMode.addEventListener("click", () => {
     body.classList.toggle("active")
 })
 
-function submitForm() {
-    $('#form_loader').show();
-}
 // Password validation
 // let password = document.getElementById("password")
 // let confirm_password = document.getElementById("confirm_password");

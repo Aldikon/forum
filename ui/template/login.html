@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="https://cdn.icon-icons.com/icons2/2714/PNG/512/instagram_logo_thin_icon_171701.png">
+</head>
+
+
+<body class="signinpage">
+    <div class="signin__container">
+        <div class="container ">
+            <h1 class="title">Sign-In</h1>
+            {{if .}}
+            <p>{{.}}</p>
+            {{else}}
+            <p>Sign in and start managing posting daily news!</p>
+            {{end}}
+            <form method="post" action="signin">
+                <div class="inputBox">
+                    <input type="text" name="email" required>
+                    <span>Email</span>
+                    <i></i>
+                </div>
+                <div class="inputBox psw">
+                    <input type="password" id="password" name="password" required>
+                    <span>Password</span>
+                    <i></i>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="LightDarkMode">
+        <div class="LightDarkMode__btn"></div>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>

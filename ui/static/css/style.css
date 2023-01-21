@@ -283,62 +283,82 @@ span {
 }
 
 
-/*formLoader*/
+/*  tags */
 
-.form_loader {
-    position: fixed;
-    display: none;
-    z-index: 999;
-    left: 0;
+label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #607D8B;
+}
+
+#newTag {
+    font-size: 1rem;
+    color: #455A64;
+    display: block;
+    width: 100%;
+    height: 3rem;
+    padding: 0 1rem;
+    border: 0.125rem solid #CFD8DC;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    transition: 0.5s all;
+}
+
+#newTag:focus,
+#newTag:active {
+    outline: none;
+    border: 0.125rem solid #81C784;
+    box-shadow: 0 0 0.5rem rgba(67, 160, 71, 0.15);
+}
+
+ul#tagList {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+ul#tagList::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+ul#tagList li {
+    position: relative;
+    list-style: none;
+    float: left;
+    font-size: 0.835rem;
+    text-transform: capitalize;
+    background-color: #E8F5E9;
+    line-height: 1rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+}
+
+ul#tagList li>span.rmTag {
+    position: absolute;
+    margin: 0.25rem;
     top: 0;
     right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.form_loader_block {
-    position: absolute;
-    width: 350px;
-    max-width: 90%;
-    left: 50%;
-    top: 45%;
-    padding: 40px;
-    border-radius: 10px;
-    background-color: #fff;
-    transform: translate(-50%, -50%);
-}
-
-.form_loader_animate {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-}
-
-.form_loader_animate:after {
-    content: "";
-    display: block;
-    width: 85%;
-    height: 85%;
-    /*margin: 8px;*/
-    border-radius: 50%;
-    border: 6px solid #fff;
-    border-color: #093545 transparent #093545 transparent;
-    animation: loader-animate 1.2s linear infinite;
-}
-
-.form_loader_text {
-    font-size: 20px;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 1rem;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
     text-align: center;
+    background-color: #C8E6C9;
+    cursor: pointer;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
 }
 
-@keyframes loader-animate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+ul#tagList li>span.rmTag:hover {
+    background-color: #ef9a9a;
 }
-
-
-/*formLoader*/
