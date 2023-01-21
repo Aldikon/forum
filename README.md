@@ -1,4 +1,4 @@
 # forum
 To run it, use the command:
 
-        go run cmd/forum/main.go
+    go run cmd/forum/main.go
