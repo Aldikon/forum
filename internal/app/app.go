@@ -11,6 +11,7 @@ import (
 
 	"project/config"
 	"project/internal/handlers"
+	"project/internal/handlers/user_handlers"
 	"project/internal/repository"
 	"project/internal/server"
 	"project/internal/service"
@@ -21,6 +22,20 @@ import (
 type app struct {
 	chanErr chan error
 }
+
+const (
+	urlIndex = "/"
+
+	// url user
+	urlLogIn   = "/login"
+	urlLogOut  = "/logout"
+	urlProfile = "/profile"
+	urlSignUp  = "/signup"
+
+	urlPost    = "/post"
+	urlLike    = "/like"
+	urlCommemt = "/comment"
+)
 
 func NewApp() *app {
 	// to do read config
@@ -52,6 +67,33 @@ func (a *app) Run() error {
 	return a.wait()
 }
 
+func (a *app) build(mux *http.ServeMux, db *sql.DB) {
+	// withAccess := http.NewServeMux()
+	// withoutAccess := http.NewServeMux()
+
+	userRepository := repository.NewUserRepository(db)
+	userService := service.NewService(userRepository)
+	userHandler := user_handlers.NewUserHandler(userService)
+
+	// middleware := middleware_handlers.NewMiddlewareHandler()
+
+	fileServer := http.FileServer(http.Dir("./ui/static"))
+	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+
+	// user mux
+	mux.HandleFunc(urlLogIn, userHandler.LogIn)
+	mux.HandleFunc(urlLogOut, userHandler.LogOut)
+	mux.HandleFunc(urlProfile, userHandler.Profile)
+	mux.HandleFunc(urlSignUp, userHandler.SignUp)
+
+	// mux.Handle("", middleware.PanicRecovery(withAccess))
+	// mux.Handle("/", middleware.PanicRecovery(withoutAccess))
+
+	// mux.HandleFunc(urlLike, userHandler.Logout)
+	// mux.HandleFunc(urlCommemt, userHandler.Logout)
+	// mux.HandleFunc(urlIndex, userHandler.Logout)
+}
+
 func (a *app) wait() error {
 	// create channel for wait signal
 	syscalCh := make(chan os.Signal, 1)
@@ -65,31 +107,4 @@ func (a *app) wait() error {
 	case err := <-a.chanErr:
 		return err
 	}
-}
-
-const (
-	urlIndex   = "/"
-	urlLogIn   = "/login"
-	urlLogOut  = "/logout"
-	urlProfile = "/profile"
-	urlPost    = "/post"
-	urlLike    = "/like"
-	urlCommemt = "/comment"
-)
-
-func (a *app) build(mux *http.ServeMux, db *sql.DB) {
-	userRepository := repository.NewUserRepository(db)
-	userService := service.NewService(userRepository)
-	userHandler := handlers.NewUserHandler(userService)
-
-	fileServer := http.FileServer(http.Dir(config.C.Path.Template))
-	mux.Handle("/"+config.C.Path.Static+"/", http.StripPrefix("/"+config.C.Path.Static, fileServer))
-
-	mux.HandleFunc(urlLogIn, userHandler.Login)
-	mux.HandleFunc(urlLogOut, userHandler.Logout)
-	// mux.HandleFunc(urlProfile, userHandler.Logout)
-	// mux.HandleFunc(urlPost, userHandler.Logout)
-	// mux.HandleFunc(urlLike, userHandler.Logout)
-	// mux.HandleFunc(urlCommemt, userHandler.Logout)
-	// mux.HandleFunc(urlIndex, userHandler.Logout)
 }

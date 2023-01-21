@@ -21,6 +21,10 @@ func NewService(repository repository.UserRepository) UserService {
 	}
 }
 
+func (u *userService) SignUp(ctx context.Context, cancel context.CancelFunc, user *model.User) (context.Context, error) {
+	return nil, nil
+}
+
 func (u *userService) Login(ctx context.Context, user *model.User) (context.Context, error) {
 	return nil, nil
 }

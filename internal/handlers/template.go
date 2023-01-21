@@ -2,10 +2,10 @@ package handlers
 
 import "html/template"
 
-var templatePage *template.Template
+var TemplatePage *template.Template
 
 // Fills the templatePage variable with patterns from the path.
 func ReadTemplate(pathTemplate string) (err error) {
-	templatePage, err = template.ParseGlob(pathTemplate + "*.html")
+	TemplatePage, err = template.ParseGlob(pathTemplate + "*.html")
 	return
 }

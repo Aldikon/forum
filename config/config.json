@@ -5,6 +5,6 @@
     "path": {
         "db": "./db/",
         "template": "./ui/template/",
-        "static": "./ui"
+        "static": "./ui/static"
     }
 }
