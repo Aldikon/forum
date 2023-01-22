@@ -713,3 +713,29 @@ ul#tagList li>span.rmTag:hover {
     margin-top: 100px;
 }
 /* post css ends*/
+
+/* createpost */
+.createpost {
+    height: 100vh;
+}
+.createpost__container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form__group, .form__group input, .form__group textarea {
+    width: 100%;
+}
+.form__group, .createpost__container button{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 400px;
+    height: 45px;
+    margin-bottom: 40px;
+}
+.createpost__container span{
+    background: #fff;
+}
+/* createpost ends */
