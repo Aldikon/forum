@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"fmt"
 
 	"project/internal/dot"
 	"project/internal/util"
@@ -83,6 +84,35 @@ func (c *categoryRepository) ReadByNameCategory(name string) (*model.Category, e
 		return nil, err
 	}
 	return category, nil
+}
+
+func (c *categoryRepository) ReadByPostIdCategory(postId string) ([]*model.Category, error) {
+	query := `SELECT * FROM Categories_Post WHERE post_id = ?;`
+	stmt, err := c.db.Prepare(query)
+	if err != nil {
+		return nil, err
+	}
+
+	var categories []*model.Category
+
+	rows, err := stmt.Query(postId)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var category *model.Category
+		err := rows.Scan(category.Id, category.Name)
+		if err != nil {
+			return nil, err
+		}
+		categories = append(categories, category)
+	}
+	if len(categories) < 1 {
+		return nil, fmt.Errorf("%s post_id not have category", postId)
+	}
+	return categories, nil
 }
 
 func (c *categoryRepository) DeleteCategory(id string) error {
