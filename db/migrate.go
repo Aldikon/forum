@@ -5,6 +5,7 @@ package migrate
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"os"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -28,7 +29,7 @@ func CreateTable(db *sql.DB) error {
 			return err
 		}
 		if _, err := db.Exec(string(data)); err != nil {
-			return err
+			log.Println(err)
 		}
 	}
 	return nil

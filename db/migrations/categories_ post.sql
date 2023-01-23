@@ -1,4 +1,4 @@
-CREATE TABLE Post_Categories (
+CREATE TABLE Categories_Post (
     post_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
     FOREIGN KEY (post_id) REFERENCES Post(id),

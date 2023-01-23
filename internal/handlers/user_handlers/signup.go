@@ -5,6 +5,7 @@ import (
 
 	"project/internal/dot"
 	"project/internal/handlers"
+	"project/internal/util"
 )
 
 func (h *userHandler) SignUp(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +31,7 @@ func (h *userHandler) signUpPost(w http.ResponseWriter, r *http.Request) {
 
 	err := h.userService.SignUp(dot.FillingUserSignUp(r.PostForm))
 	if err == nil {
-		cleenRequest(r)
+		util.CleenRequest(r)
 		http.Redirect(w, r, "/login", http.StatusFound)
 		return
 	}
@@ -38,14 +39,5 @@ func (h *userHandler) signUpPost(w http.ResponseWriter, r *http.Request) {
 	err = handlers.TemplatePage.ExecuteTemplate(w, "signup.html", err.Error())
 	if err != nil {
 		handlers.ErrorPage(w, http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError))
-	}
-}
-
-func cleenRequest(r *http.Request) {
-	for key := range r.Form {
-		delete(r.Form, key)
-	}
-	for key := range r.PostForm {
-		delete(r.PostForm, key)
 	}
 }

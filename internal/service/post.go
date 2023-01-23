@@ -1,15 +1,33 @@
 package service
 
-import "database/sql"
+import (
+	"project/internal/dot"
+	"project/internal/repository"
+)
 
-type PostService interface{}
-
-type postService struct {
-	db *sql.DB
+type PostService interface {
+	CreatePost(*dot.CreatePost) error
 }
 
-func NewPostService(db *sql.DB) *postService {
+type postService struct {
+	postRepository repository.PostRepository
+	userRepository repository.UserRepository
+}
+
+func NewPostService(postRepo repository.PostRepository, uerRepo repository.UserRepository) PostService {
 	return &postService{
-		db: db,
+		postRepository: postRepo,
+		userRepository: uerRepo,
 	}
+}
+
+func (p *postService) CreatePost(post *dot.CreatePost) error {
+	_, err := p.userRepository.ReadToIdUser(post.UserId)
+	if err != nil {
+		return err
+	}
+	if err := p.postRepository.CreatePost(post); err != nil {
+		return err
+	}
+	return nil
 }

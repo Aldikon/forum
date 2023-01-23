@@ -11,6 +11,7 @@ import (
 	"project/config"
 	"project/internal/handlers"
 	"project/internal/handlers/middleware_handlers"
+	"project/internal/handlers/post_handlers"
 	"project/internal/handlers/user_handlers"
 	"project/internal/repository"
 	"project/internal/server"
@@ -32,7 +33,9 @@ const (
 	urlProfile = "/profile"
 	urlSignUp  = "/signup"
 
-	urlPost    = "/post"
+	urlPost       = "/post"
+	urlCreatePost = "/createpost"
+
 	urlLike    = "/like"
 	urlCommemt = "/comment"
 )
@@ -59,8 +62,12 @@ func (a *app) Run() error {
 	// a.build(mux, db)
 
 	userRepository := repository.NewUserRepository(db)
-	userService := service.NewService(userRepository)
+	userService := service.NewUserService(userRepository)
 	userHandler := user_handlers.NewUserHandler(userService)
+
+	postRepository := repository.NewPostRepository(db)
+	postService := service.NewPostService(postRepository, userRepository)
+	postHandler := post_handlers.NewPostHandler(postService)
 
 	middleware := middleware_handlers.NewMiddlewareHandler()
 
@@ -71,6 +78,8 @@ func (a *app) Run() error {
 	mux.HandleFunc(urlLogIn, userHandler.LogIn)
 	mux.HandleFunc(urlLogOut, userHandler.LogOut)
 	mux.HandleFunc(urlSignUp, userHandler.SignUp)
+
+	mux.HandleFunc(urlCreatePost, postHandler.CreatePost)
 
 	myServer := server.NewServer(middleware.PanicRecovery(mux))
 
