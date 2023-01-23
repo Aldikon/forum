@@ -1,15 +1,21 @@
 package service
 
-import "database/sql"
+import (
+	"project/internal/repository"
+)
 
 type PostService interface{}
 
 type postService struct {
-	db *sql.DB
+	PostRepository *repository.PostRepository
 }
 
-func NewPostService(db *sql.DB) *postService {
+func NewPostService(postRepo *repository.PostRepository) *postService {
 	return &postService{
-		db: db,
+		PostRepository: postRepo,
 	}
+}
+
+func (p *postService) CreatePost() error {
+	return nil
 }

@@ -1,12 +1,10 @@
 package service
 
 import (
-	"context"
 	"errors"
 
 	"project/internal/dot"
 	"project/internal/repository"
-	"project/model"
 )
 
 var (
@@ -18,7 +16,7 @@ var (
 
 type UserService interface {
 	SignUp(*dot.UserSignUp) error
-	Login(ctx context.Context, user *model.User) (context.Context, error)
+	LogIn(user *dot.UserLogIn) error
 }
 
 type userService struct {
@@ -32,12 +30,17 @@ func NewService(repository repository.UserRepository) UserService {
 }
 
 func (u *userService) SignUp(user *dot.UserSignUp) error {
-	if user.Password != user.ConfirmPassword {
-		return ErrNotTheSamePassword
-	}
-	return nil
+	// if user.Password != user.ConfirmPassword {
+	// 	return ErrNotTheSamePassword
+	// }
+	err := u.repository.CreateUser(user)
+	return err
 }
 
-func (u *userService) Login(ctx context.Context, user *model.User) (context.Context, error) {
-	return nil, nil
+func (u *userService) LogIn(user *dot.UserLogIn) error {
+	if err := u.repository.ReadToRegisterUser(user); err != nil {
+		return err
+	}
+
+	return nil
 }

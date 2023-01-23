@@ -3,7 +3,7 @@
         "port": ":8080"
     },
     "path": {
-        "db": "./db/",
+        "db": "./db/forum.db",
         "template": "./ui/template/",
         "static": "./ui/static"
     }

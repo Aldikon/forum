@@ -1,4 +1,4 @@
-package handlers
+package post_handlers
 
 import (
 	"project/internal/service"
@@ -6,8 +6,12 @@ import (
 
 type PostHandler interface{}
 
-type postHandler struct{}
+type postHandler struct {
+	postService *service.PostService
+}
 
-func NewPostHandler(userService service.UserService) *postHandler {
-	return &postHandler{}
+func NewPostHandler(postService *service.PostService) *postHandler {
+	return &postHandler{
+		postService: postService,
+	}
 }
