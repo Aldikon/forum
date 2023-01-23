@@ -62,14 +62,18 @@ func (c *categoryRepository) createCategory(name string) error {
 	return util.StmtExec(stmt, name)
 }
 
-func (c *categoryRepository) ReadByIdCategory(id string) error {
+func (c *categoryRepository) ReadByIdCategory(id string) (*model.Category, error) {
 	query := `SELECT * FROM Categories WHERE id = ?;`
 	stmt, err := c.db.Prepare(query)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	var category *model.Category
-	return stmt.QueryRow(id).Scan(category.Id, category.Name)
+	err = stmt.QueryRow(id).Scan(category.Id, category.Name)
+	if err != nil {
+		return nil, err
+	}
+	return category, nil
 }
 
 func (c *categoryRepository) ReadByNameCategory(name string) (*model.Category, error) {
