@@ -9,7 +9,13 @@ import (
 	"project/model"
 )
 
-type CategoryRepository interface{}
+type CategoryRepository interface {
+	CreateCategoryForPost(*dot.CreateCategory) error
+	ReadByIdCategory(string) (*model.Category, error)
+	ReadByNameCategory(string) (*model.Category, error)
+	ReadByPostIdCategory(string) ([]*model.Category, error)
+	DeleteCategory(string) error
+}
 
 type categoryRepository struct {
 	db *sql.DB
