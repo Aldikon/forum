@@ -11,6 +11,7 @@ import (
 type UserRepository interface {
 	CreateUser(user *dot.UserSignUp) error
 	ReadToRegisterUser(*dot.UserLogIn) error
+	ReadToIdUser(id string) (*model.User, error)
 }
 
 type userRepository struct {
@@ -60,4 +61,23 @@ func (u *userRepository) ReadToRegisterUser(user *dot.UserLogIn) error {
 		return errors.New("User not found!")
 	}
 	return nil
+}
+
+func (u *userRepository) ReadToIdUser(id string) (*model.User, error) {
+	query := `	SELECT * FROM Users WHERE id = ? `
+	stmt, err := u.db.Prepare(query)
+	if err != nil {
+		return nil, nil
+	}
+	defer stmt.Close()
+
+	rows := stmt.QueryRow(id)
+	var user *model.User
+
+	err = rows.Scan(user.Id, user.Name, user.Email, user.Password)
+	if err != nil {
+		return nil, errors.New("User not found!")
+	}
+
+	return user, nil
 }

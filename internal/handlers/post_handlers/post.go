@@ -1,16 +1,20 @@
 package post_handlers
 
 import (
+	"net/http"
+
 	"project/internal/service"
 )
 
-type PostHandler interface{}
-
-type postHandler struct {
-	postService *service.PostService
+type PostHandler interface {
+	CreatePost(w http.ResponseWriter, r *http.Request)
 }
 
-func NewPostHandler(postService *service.PostService) *postHandler {
+type postHandler struct {
+	postService service.PostService
+}
+
+func NewPostHandler(postService service.PostService) PostHandler {
 	return &postHandler{
 		postService: postService,
 	}
