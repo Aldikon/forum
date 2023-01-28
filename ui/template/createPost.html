@@ -11,18 +11,33 @@
     <link rel="icon" type="image/x-icon" href="https://cdn.icon-icons.com/icons2/2714/PNG/512/instagram_logo_thin_icon_171701.png">
     <link rel="icon" type="image/x-icon" href="https://cdn.icon-icons.com/icons2/2714/PNG/512/instagram_logo_thin_icon_171701.png">
 </head>
-
+ 
 <body>
-    <div class="heading">Create Post</div>
-    <div id="container">
-        <!-- action не забыть -->
-        <form method="post" action="">
-            <input type="text" id="inputtitle" placeholder="add title" name="title" required>
-            <textarea id="inputmessage" placeholder="add your text here" name="message" required></textarea>
-            <input type="text" id="inputcategorytitle" placeholder="add tags" name="category" required>
-            <input type="text" data-role="taginput" name="tags" value="" required>
-            <input type="submit" value="Create Post">
-        </form>
+    <div class="title">Create Post</div>
+    <div class="createpost">
+        <div class="container">
+            <div class="createpost__container">
+                <form method="post" action="createpost">
+
+                    <div class="inputBox">
+                        <input type="password"  name="password" required>
+                        <span>add title</span>
+                        <i></i>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="password"  name="password" required>
+                        <span>add your text here</span>
+                        <i></i>
+                    </div>
+                    <div class="form__group ">
+                        <label for="">add tags (to add tag type smth and press space or enter)</label>
+                        <input type="text" data-role="taginput" value="">
+                    </div>
+                    <button type="submit">"Create Post</button>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="js/jquery-3.6.0.min.js"></script>
