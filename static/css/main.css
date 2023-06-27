@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 0 20px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+body {
+    font-size: 15px;
+}
+
+button {
+    height: 40px;
+    padding: 0 15px;
+    font-size: 17px;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    transition: .3s;
+}
+
+button:hover {
+    cursor:pointer;
+    color: white;
+    background-color: rgb(100, 100, 255);
+}
+
+button:focus {
+    outline: none;
+}

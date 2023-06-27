@@ -1,0 +1,25 @@
+.header {
+    background-color: rgb(251, 255, 0);
+    font-size: 17px;
+}
+
+.header-inner {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    font-size: 20px;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+}
+
+.header__nav-item + .header__nav-item {
+    margin-left: 10px;
+}

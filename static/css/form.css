@@ -1,0 +1,24 @@
+body {
+    height: 100%;
+    width: 100%;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 30%;
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 50px;
+    background-color: yellow;
+}
+
+form * {
+    margin: 7px 0;
+}
+
+form input {
+    border: 1px solid black;
+    border-radius: 5px;
+}

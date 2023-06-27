@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/post.css">
+    {{$userID := .User.ID}}
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="header__logo">Forum</div>
+                <div class="header__nav">
+                    {{if gt $userID 0}}
+                    <div class="header__nav-item">
+                        <div>{{.User.Name}}</div>
+                    </div>
+                    <div class="header__nav-item">
+                        <form action="/post" method="get">
+                            <button type="submit">Create Post</button>
+                        </form>
+                    </div>
+                    <div class="header__nav-item">
+                        <form action="/log-out" method="post">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </div>
+                    {{else}}
+                    <div class="header__nav-item">
+                        <form action="/log-in" method="get">
+                            <button type="submit">Login</button>
+                        </form>
+                    </div>
+                    <div class="header__nav-item">
+                        <form action="/sign-up" method="get">
+                            <button type="submit">Signup</button>
+                        </form>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="filter">
+            <div class="container">
+                <div class="filter-inner">
+                    <div class="filter-item">
+                        Categories:
+                    </div>
+                    <div class="filter-item">
+                        <form action="/" method="get">
+                            <button type="submit">All</button>
+                        </form>
+                    </div>
+                    {{if gt $userID 0}}
+                    <div class="filter-item">
+                        <form action="/" method="get">
+                            <input type="hidden" name="filter" value="liked">
+                            <button type="submit">My Liked Post</button>
+                        </form>
+                    </div>
+                    {{end}}
+
+                    {{range .Categories}}
+                    <div class="filter-item">
+                        <form action="/" method="get">
+                            <input type="hidden" name="filter" value="{{.}}">
+                            <button type="submit">{{.}}</button>
+                        </form>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="container">
+                {{range .Posts}}
+
+                <div class="post-inner">
+                    <div class="post-items">
+                        <div class="post-info">
+                            <div class="info-user">User: {{.UserName}}</div>
+                            <div class="info-title">Title: {{.Title}}</div>
+                            <div class="info-date">Created At: {{.CreateAtt}}</div>
+                        </div>
+                        <div class="post-nav">
+                            <form action="/post/{{.ID}}" method="get">
+                                <button type="submit">Join</button>
+                            </form>
+                            <form action="/reac-post" method="post">
+                                <input type="hidden" name="post_id" value="{{.ID}}">
+                                <input type="hidden" name="reac" value="1">
+                                <button type="submit">&#x1F44D; {{.Reaction.Like}}</button>
+                            </form>
+
+                            <form action="/reac-post" method="post">
+                                <input type="hidden" name="post_id" value="{{.ID}}">
+                                <input type="hidden" name="reac" value="-1">
+                                <button type="submit">&#x1F44E; {{.Reaction.DisLike}}</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="post-category">
+                        <div class="category-item">Categories:</div>
+                        {{range .Categories}}
+                        <div class="category-item">{{.}}</div>
+                        {{end}}
+                    </div>
+                    <div class="post-content">
+                        <p>{{.Content}}</p>
+                    </div>
+                </div>
+
+                {{end}}
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+.filter {
+    font-size: 17px;
+    margin-top: 50px;
+}
+
+.filter-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.filter-item + .filter-item {
+    margin-left: 10px;
+}
+
