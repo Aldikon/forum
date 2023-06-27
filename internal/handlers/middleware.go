@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	"forum/internal/model"
+	"github.com/Aldikon/forum/internal/model"
 )
 
 type middleware struct {

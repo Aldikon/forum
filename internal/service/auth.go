@@ -1,8 +1,8 @@
 package service
 
 import (
-	"forum/internal/model"
-	service "forum/internal/service/service_auth"
+	"github.com/Aldikon/forum/internal/model"
+	service "github.com/Aldikon/forum/internal/service/service_auth"
 )
 
 type auth struct {

@@ -1,10 +1,10 @@
 package service
 
 import (
-	"forum/internal/model"
-	service_commnet "forum/internal/service/service_social/comment"
-	service_post "forum/internal/service/service_social/post"
-	service_reaction "forum/internal/service/service_social/reaction"
+	"github.com/Aldikon/forum/internal/model"
+	service_commnet "github.com/Aldikon/forum/internal/service/service_social/comment"
+	service_post "github.com/Aldikon/forum/internal/service/service_social/post"
+	service_reaction "github.com/Aldikon/forum/internal/service/service_social/reaction"
 )
 
 type social struct {

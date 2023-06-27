@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"time"
 
-	"forum/internal/model"
+	"github.com/Aldikon/forum/internal/model"
 )
 
 type comment struct {

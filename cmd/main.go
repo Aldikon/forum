@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"time"
 
-	"forum/db/migrate"
-	"forum/internal/handlers"
-	"forum/internal/repository"
-	"forum/internal/service"
-	"forum/internal/template"
-	"forum/pkg/sqlite"
+	"github.com/Aldikon/forum/internal/handlers"
+	"github.com/Aldikon/forum/internal/repository"
+	"github.com/Aldikon/forum/internal/service"
+	"github.com/Aldikon/forum/internal/template"
+	"github.com/Aldikon/forum/migrate"
+	"github.com/Aldikon/forum/pkg/sqlite"
 )
 
 const adr = ":8080"

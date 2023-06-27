@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	handlers "forum/internal/handlers/social"
-	"forum/internal/model"
+	handlers "github.com/Aldikon/forum/internal/handlers/social"
+	"github.com/Aldikon/forum/internal/model"
 )
 
 func InitSocial(mux *http.ServeMux, m *middleware, s model.SocialService, a model.AuthService) {

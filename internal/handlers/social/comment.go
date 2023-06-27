@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"forum/internal/model"
+	"github.com/Aldikon/forum/internal/model"
 )
 
 func (s *social) CreateComment(w http.ResponseWriter, r *http.Request) {

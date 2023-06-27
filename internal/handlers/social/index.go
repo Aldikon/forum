@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"forum/internal/model"
-	"forum/internal/template"
+	"github.com/Aldikon/forum/internal/model"
+	"github.com/Aldikon/forum/internal/template"
 )
 
 func (s *social) Index(w http.ResponseWriter, r *http.Request) {

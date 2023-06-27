@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"forum/internal/model"
+	"github.com/Aldikon/forum/internal/model"
 )
 
 type reaction struct {

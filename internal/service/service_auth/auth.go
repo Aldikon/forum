@@ -1,8 +1,6 @@
 package service
 
-import (
-	"forum/internal/model"
-)
+import "github.com/Aldikon/forum/internal/model"
 
 type auth struct {
 	repo model.AuthorizationRepo

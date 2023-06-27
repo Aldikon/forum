@@ -1,6 +1,6 @@
 package handlers
 
-import "forum/internal/model"
+import "github.com/Aldikon/forum/internal/model"
 
 type auth struct {
 	model.AuthService

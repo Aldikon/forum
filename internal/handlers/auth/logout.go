@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"forum/internal/model"
+	"github.com/Aldikon/forum/internal/model"
 )
 
 func (a *auth) LogOut(w http.ResponseWriter, r *http.Request) {

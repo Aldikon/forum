@@ -8,8 +8,8 @@ import (
 	"path"
 	"strconv"
 
-	"forum/internal/model"
-	"forum/internal/template"
+	"github.com/Aldikon/forum/internal/model"
+	"github.com/Aldikon/forum/internal/template"
 )
 
 func (s *social) CreatePost(w http.ResponseWriter, r *http.Request) {

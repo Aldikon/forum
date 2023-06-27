@@ -3,8 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	handlers "forum/internal/handlers/auth"
-	"forum/internal/model"
+	"github.com/Aldikon/forum/internal/model"
+
+	handlers "github.com/Aldikon/forum/internal/handlers/auth"
 )
 
 func InitAuth(mux *http.ServeMux, m *middleware, a model.AuthService) {

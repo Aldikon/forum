@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 
-	"forum/internal/model"
+	"github.com/Aldikon/forum/internal/model"
 )
 
 type reaction struct {

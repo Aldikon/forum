@@ -94,6 +94,7 @@ var datas []string = []string{
 }
 
 func Migrate(ctx context.Context, db *sql.DB) error {
+
 	tx, err := db.Begin()
 	if err != nil {
 		return err
@@ -105,7 +106,6 @@ func Migrate(ctx context.Context, db *sql.DB) error {
 			return err
 		}
 	}
-
 	for _, query := range datas {
 		_, err := tx.ExecContext(ctx, query)
 		if err != nil {

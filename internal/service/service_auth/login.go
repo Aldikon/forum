@@ -6,8 +6,7 @@ import (
 	"errors"
 	"time"
 
-	"forum/internal/model"
-
+	"github.com/Aldikon/forum/internal/model"
 	"github.com/gofrs/uuid"
 )
 
